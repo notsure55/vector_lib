@@ -12,21 +12,19 @@ void vector_example()
     Player player = player_new(100, "black");
     Player player1 = player_new(50, "fan");
 
-    vec_push(&players, player);
-    vec_push(&players, player1);
+    vec_push(&players, &player);
+    vec_push(&players, &player1);
 
     for (size_t i = 0; i < players.count; ++i)
     {
         Player* p = (Player*)players.objects[i];
-        printf("First: %s\n", p->name);
-        p->free(p);
-        printf("Second: %s\n", p->name);
+        printf("Name: %s\n", p->name);
     }
 
     players.free(&players);
 }
 
-int main()
+void hashmap_example()
 {
     Hashmap map = hashmap_new(TYPE_INTEGER, TYPE_PLAYER);
     Player player = player_new(100, "fan");
@@ -46,5 +44,11 @@ int main()
     }
 
     printf("%d %s\n", TRANSFORM_VALUE(map.key_type, map.kvs[0].key), ((Player*)map.kvs[0].value)->name);
+}
+
+int main()
+{
+    vector_example();
+
     return 0;
 }
