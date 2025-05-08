@@ -1,3 +1,0 @@
-C:/Users/schwarztoter/projects/c/vector_lib/Build/CMakeFiles/vector_test.dir
-C:/Users/schwarztoter/projects/c/vector_lib/Build/CMakeFiles/ALL_BUILD.dir
-C:/Users/schwarztoter/projects/c/vector_lib/Build/CMakeFiles/ZERO_CHECK.dir
