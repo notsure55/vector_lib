@@ -21,4 +21,6 @@ void vec_free(Vector* vec);
 void vec_push(Vector* vec, void* value);
 Vector vector_new(enum Type type);
 
+void* vec_retrieve(Vector* vec, size_t index);
+
 #endif // VECTOR_H

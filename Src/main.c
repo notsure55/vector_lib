@@ -1,9 +1,11 @@
 #include <windows.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include <Vector/Vector.h>
 #include <Hashmap/Hashmap.h>
 #include <Type/Type.h>
+#include <Hook/InlineHook.h>
 
 void vector_example()
 {
@@ -17,7 +19,7 @@ void vector_example()
 
     for (size_t i = 0; i < players.count; ++i)
     {
-        Player* p = (Player*)players.objects[i];
+        Player* p = (Player*)vec_retrieve(&players, i);
         printf("Name: %s\n", p->name);
     }
 
@@ -32,7 +34,7 @@ void hashmap_example()
     int black = 5;
     hashmap_push(&map, &black, &player);
 
-    printf("%d %s\n", TRANSFORM_VALUE(map.key_type, map.kvs[0].key), ((Player*)map.kvs[0].value)->name);
+    printf("%d %s\n", *(int*)map.kvs[0].key, ((Player*)map.kvs[0].value)->name);
 
     if (hashmap_insert(&map, &black, &player1))
     {
@@ -43,12 +45,30 @@ void hashmap_example()
         printf("Pushed onto map\n");
     }
 
-    printf("%d %s\n", TRANSFORM_VALUE(map.key_type, map.kvs[0].key), ((Player*)map.kvs[0].value)->name);
+    KV* object = hashmap_retrieve(&map, 0);
+
+    printf("%d %s\n", *(int*)object->key, ((Player*)object->value)->name);
+}
+
+void print_input(const char* input)
+{
+    printf("%s\n", input);
+    fflush(stdout);
+}
+
+void print_hook(const char* input) {
+    printf("Your not black!\n");
+    fflush(stdout);
 }
 
 int main()
 {
-    vector_example();
+    inline_hook(&print_input, &print_hook);
+    while (true)
+    {
+        print_input("Im black in real life.");
+        Sleep(1000);
+    }
 
     return 0;
 }

@@ -6,7 +6,7 @@
 Hashmap hashmap_new(enum Type key_type, enum Type value_type)
 {
     Hashmap hp;
-    hp.kvs = (struct KV*)malloc((hp.count + 1) * sizeof(struct KV));
+    hp.kvs = (KV*)malloc((hp.count + 1) * sizeof(KV));
     hp.count = 0;
     hp.key_type = key_type;
     hp.value_type = value_type;
@@ -81,11 +81,16 @@ int hashmap_key_does_exist(Hashmap* map, void* key)
 void hashmap_push(Hashmap* map, void* key, void* value)
 {
     map->count += 1;
-    map->kvs = (struct KV*)realloc(map->kvs, map->count * sizeof(struct KV));
+    map->kvs = (KV*)realloc(map->kvs, map->count * sizeof(KV));
     // copying key
     map->kvs[map->count - 1].key = (void*)malloc(TYPE_SIZE(map->key_type));
     memcpy(map->kvs[map->count - 1].key, key, TYPE_SIZE(map->key_type));
     // copying value
     map->kvs[map->count - 1].value = (void*)malloc(TYPE_SIZE(map->value_type));
     memcpy(map->kvs[map->count - 1].value, value, TYPE_SIZE(map->value_type));
+}
+
+KV* hashmap_retrieve(Hashmap* map, size_t index)
+{
+    return &(map->kvs[index]);
 }

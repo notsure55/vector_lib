@@ -5,14 +5,13 @@
 #include <stdbool.h>
 #include <Vector/Vector.h>
 
-struct KV
-{
+typedef struct {
     void *key;
     void *value;
-};
+} KV;
 
 typedef struct {
-    struct KV* kvs;
+    KV* kvs;
     enum Type key_type;
     enum Type value_type;
     size_t count;
@@ -21,5 +20,6 @@ typedef struct {
 Hashmap hashmap_new(enum Type key_type, enum Type value_type);
 void hashmap_push(Hashmap* map, void* key, void* value);
 int hashmap_key_does_exist(Hashmap* map, void* key);
+KV* hashmap_retrieve(Hashmap* map, size_t index);
 
 #endif // HASHMAP_H

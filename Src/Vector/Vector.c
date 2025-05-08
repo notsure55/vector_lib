@@ -25,6 +25,11 @@ void vec_push(Vector* vec, void* value)
     memcpy(vec->objects[vec->count - 1], value, TYPE_SIZE(vec->type));
 }
 
+void* vec_retrieve(Vector* vec, size_t index)
+{
+    return vec->objects[index];
+}
+
 // free our vecs used memory
 // doesnt free everything tho depending on the type.
 void vec_free(Vector* vec)

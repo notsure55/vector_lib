@@ -13,7 +13,7 @@ if (-not (Test-Path CMakeCache.txt))
 }
 
 # build project
-cmake --build . --config Release
+cmake --build . --config Debug
 
 # execute binary, can comment this out if you want 
-.\Release\vector_test.exe
+.\Debug\vector_test.exe
