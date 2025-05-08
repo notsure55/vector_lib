@@ -1,7 +1,7 @@
 #ifndef TYPE_H
 #define TYPE_H
 
-#include <Player.h>
+#include <Player/Player.h>
 
 int transform_value_int(void* value);
 

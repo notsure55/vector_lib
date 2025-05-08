@@ -1,4 +1,4 @@
-#include <Player.h>
+#include <Player/Player.h>
 #include <stdlib.h>
 
 Player player_new(int health, const char* name)

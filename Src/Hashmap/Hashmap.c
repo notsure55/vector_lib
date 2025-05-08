@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <Hashmap.h>
+#include <Hashmap/Hashmap.h>
 
 Hashmap hashmap_new(enum Type key_type, enum Type value_type)
 {

@@ -1,9 +1,9 @@
 #include <windows.h>
 #include <stdio.h>
 
-#include <Vector.h>
-#include <Hashmap.h>
-#include <Type.h>
+#include <Vector/Vector.h>
+#include <Hashmap/Hashmap.h>
+#include <Type/Type.h>
 
 void vector_example()
 {

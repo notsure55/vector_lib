@@ -1,8 +1,8 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-#include <Player.h>
-#include <Type.h>
+#include <Player/Player.h>
+#include <Type/Type.h>
 
 // macros
 

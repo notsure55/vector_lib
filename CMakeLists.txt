@@ -16,8 +16,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-  Src/Vector/
-  Src/Player/
-  Src/Hashmap/
-  Src/Type/
+  Src  
 )
