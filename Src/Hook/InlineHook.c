@@ -4,7 +4,7 @@
 
 #define INLINE_BYTES_SIZE 12
 
-void inline_create_jump_bytes(unsigned char** bytes, const void* dst)
+void create_jump_bytes(unsigned char** bytes, void* dst)
 {                                                // mov rax, address
     unsigned char jmp_bytes[INLINE_BYTES_SIZE] = {0x48, 0xB8, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC, 0xCC,
                                                   0xFF, 0xE0}; //jmp rax
@@ -38,7 +38,7 @@ void print_error_and_exit()
     exit(EXIT_FAILURE);
 }
 
-DWORD change_protections(const void* address, size_t size, DWORD new_protections)
+DWORD change_protections(void* address, size_t size, DWORD new_protections)
 {
     DWORD old_protect;
 
@@ -50,10 +50,10 @@ DWORD change_protections(const void* address, size_t size, DWORD new_protections
     return old_protect;
 }
 
-void inline_hook(void* src, const void* dst)
+void inline_hook(void** src, void** dst)
 {
     unsigned char* jmp_bytes = NULL;
-    inline_create_jump_bytes(&jmp_bytes, dst);
+    create_jump_bytes(&jmp_bytes, dst);
 
     // change protections so we can write our jmp bytes to function prelude
     const DWORD old_protect = change_protections(src, INLINE_BYTES_SIZE, PAGE_EXECUTE_READWRITE);

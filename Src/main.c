@@ -6,6 +6,7 @@
 #include <Hashmap/Hashmap.h>
 #include <Type/Type.h>
 #include <Hook/InlineHook.h>
+#include <Hook/TrampolineHook.h>
 
 void vector_example()
 {
@@ -56,17 +57,23 @@ void print_input(const char* input)
     fflush(stdout);
 }
 
+typedef void (*trampoline_t)(const char* input);
+trampoline_t trampoline_function = NULL;
+
 void print_hook(const char* input) {
     printf("Your not black!\n");
     fflush(stdout);
+
+    trampoline_function(input);
 }
 
 int main()
 {
-    inline_hook(&print_input, &print_hook);
+    trampoline_hook((void*)&print_input, (void*)&print_hook, (void**)&trampoline_function);
+
     while (true)
     {
-        print_input("Im black in real life.");
+        print_input("Im black in real life.\n");
         Sleep(1000);
     }
 
