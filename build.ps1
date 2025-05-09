@@ -16,4 +16,4 @@ if (-not (Test-Path CMakeCache.txt))
 cmake --build . --config Debug
 
 # execute binary, can comment this out if you want 
-.\Debug\vector_test.exe
+#.\Debug\vector_test.exe

@@ -90,7 +90,7 @@ size_t calculate_prologue_size(void** address)
     return 0;
 }
 
-void trampoline_hook(void* src, void* dst, void** trampoline_function)
+void install_trampoline_hook(void* src, void* dst, void** trampoline_function)
 {
     // creating jmp_bytes for src function
     unsigned char* jmp_bytes = NULL;
@@ -144,4 +144,5 @@ void trampoline_hook(void* src, void* dst, void** trampoline_function)
     // cleanup
     free(jmp_bytes);
     free(jmp_to_src_bytes);
+    free(saved_bytes);
 }
