@@ -7,8 +7,8 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 file(GLOB_RECURSE SOURCES Src/*.*)
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
-#add_executable(${PROJECT_NAME} ${SOURCES})
+#add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES})
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
         PREFIX ""

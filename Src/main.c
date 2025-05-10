@@ -69,7 +69,7 @@ void print_hook(const char* input) {
 
 int main()
 {
-    trampoline_hook((void*)&print_input, (void*)&print_hook, (void**)&trampoline_function);
+    install_trampoline_hook((void*)&print_input, (void*)&print_hook, (void**)&trampoline_function);
 
     while (true)
     {
